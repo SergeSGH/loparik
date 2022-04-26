@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-
 def index(request):    
-    return HttpResponse('Главная страница')
+    template = 'attraction/index3.html'
+    return render(request, template)
 
 def prizy(request):
     return HttpResponse('Призы аттракциона')
