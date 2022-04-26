@@ -14,7 +14,7 @@ class Topic(models.Model):
     class Meta:
         ordering = ['id']
         verbose_name = 'Топик'
-        verbose_name_plural = 'Топики'
+        verbose_name_plural = '  Топики'
 
     def __str__(self):
         return self.name
@@ -30,14 +30,14 @@ class SubTopic(models.Model):
         Topic,
         on_delete=models.CASCADE,
         related_name='subtopics',
-        verbose_name='Топик',
-        help_text='Топик'
+        verbose_name='Подтопики',
+        help_text='Подтопик'
     )
 
     class Meta:
         ordering = ['id']
         verbose_name = 'Подтопик'
-        verbose_name_plural = 'Подтопики'
+        verbose_name_plural = ' Подтопики'
 
     def __str__(self):
         return self.name

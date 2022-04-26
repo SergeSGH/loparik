@@ -9,6 +9,6 @@ def order_create(request):
         return redirect('attraction:profile')
     return render(
         request,
-        'attraction/order_create.html',
+        'orders/order_create.html',
         {'form': form}
     )
