@@ -10,11 +10,16 @@ class Topic(models.Model):
         help_text='Название топика',
         max_length=20
     )
+    image = models.ImageField(
+        'Картинка',
+        upload_to='topic_pics/',
+        blank=True
+    )
 
     class Meta:
         ordering = ['id']
         verbose_name = 'Топик'
-        verbose_name_plural = '  Топики'
+        verbose_name_plural = '   Топики'
 
     def __str__(self):
         return self.name
@@ -43,14 +48,73 @@ class SubTopic(models.Model):
         return self.name
 
 
-class Message(models.Model):
+class MessageMain(models.Model):
+    title = models.TextField(
+        'Заголовок на главной странице',
+        help_text='Заголовок на главной странице'
+    )
+    message = models.TextField(
+        'Абзац на главной странице',
+        help_text='Абзац на главной странице',
+        blank=True
+    )
+    image = models.ImageField(
+        'Картинка',
+        upload_to='main_pics/',
+        blank=True
+    )
+
+    class Meta:
+        ordering = ['id']
+        verbose_name = 'Абзац главной страницы'
+        verbose_name_plural = '   Абзацы главной страницы'
+
+    def __str__(self):
+        return self.title[:15]
+
+
+class MessageTopic(models.Model):
     title = models.TextField(
         'Заголовок абзаца',
         help_text='Заголовок абзаца'
     )
     message = models.TextField(
-        'Абзац',
-        help_text='Абзац'
+        'Абзац топика',
+        help_text='Абзац топика',
+        blank=True
+    )
+    topic = models.ForeignKey(
+        Topic,
+        on_delete=models.CASCADE,
+        related_name='messages',
+        verbose_name='Топик',
+        help_text='Топик'
+    )
+    image = models.ImageField(
+        'Картинка',
+        upload_to='topic_pics/',
+        blank=True
+    )
+
+    class Meta:
+        ordering = ['id']
+        verbose_name = 'Абзац топика'
+        verbose_name_plural = '  Абзацы топиков'
+
+    def __str__(self):
+        return self.title[:15]
+
+
+
+class MessageSubTopic(models.Model):
+    title = models.TextField(
+        'Заголовок абзаца',
+        help_text='Заголовок абзаца'
+    )
+    message = models.TextField(
+        'Абзац подтопика',
+        help_text='Абзац подтопика',
+        blank=True
     )
     subtopic = models.ForeignKey(
         SubTopic,
@@ -58,6 +122,11 @@ class Message(models.Model):
         related_name='messages',
         verbose_name='Подтопик',
         help_text='Подтопик'
+    )
+    image = models.ImageField(
+        'Картинка',
+        upload_to='subtopic_pics/',
+        blank=True
     )
 
     class Meta:

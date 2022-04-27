@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf.urls.static import static
 from django.conf import settings
+from django.shortcuts import redirect
 
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
@@ -34,11 +35,19 @@ urlpatterns += [
     path('', include('orders.urls', namespace='orders')),
 ]
 
+def redirect_view(request): 
+    response = redirect('static/img/fav/favicon-16x16.png') 
+    return response 
 
-urlpatterns += staticfiles_urlpatterns()
+urlpatterns += [
+    path('favicon.ico', redirect_view, name = 'favicon'),
+]
 
 
-#if settings.DEBUG:
-#    urlpatterns += static(
-#        settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
-#    )
+
+
+
+if settings.DEBUG:
+    urlpatterns += static(
+        settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
+    )

@@ -6,6 +6,6 @@ app_name = 'attraction'
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('prizy/', views.prizy, name='prizy'),
-    path('consult/', views.consult, name='consult')  
+    path('topic_pk:int/', views.topic, name='topic'),
+    path('topic_pk:int/sub_topic_pk:int/', views.subtopic, name='subtopic')  
 ]
