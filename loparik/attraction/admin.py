@@ -7,6 +7,7 @@ class TopicAdmin(admin.ModelAdmin):
     list_display = (
         'id',
         'name',
+        'slug',
         'image'
     )
     search_fields = ('name',)
@@ -16,7 +17,8 @@ class SubTopicAdmin(admin.ModelAdmin):
     list_display = (
         'id',
         'topic',
-        'name'
+        'name',
+        'slug'
     )
     search_fields = ('name',)
 

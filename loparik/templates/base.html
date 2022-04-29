@@ -26,6 +26,7 @@
 	<link href="{% static 'css/owl.theme.green.min.css' %}" rel="stylesheet">
 	<link href="{% static "css/app.min.css" %}" rel="stylesheet">
 </head>
+
 <body itemscope="itemscope" itemtype="http://schema.org/WebPage">
 	<header itemscope itemtype="http://schema.org/WPHeader">
 		{% include 'includes/header.html' %}
@@ -37,27 +38,15 @@
 					{% include 'includes/upper_menu.html' %}
 				</div>
 			</div>
-
 			<div class="row">
 				<div class="col-md-4 hidden-xs">
 					{% include 'includes/left_menu.html' %}
 				</div>
 				<div class="col-md-8 content" itemscope itemtype="http://schema.org/Product">
-					<div class="hidden" itemprop="description">
-						Мини-боулинг с длинной дорожки в 6 метров сможет украсить любой праздник.
-					</div>
 					<article>
 						<div class="row">
 							<div class="col-md-12" id="content-text">
-
-								<h1 class="justifyleft">
-                                    <span style="color: #99cc00;">
-                                        {% block content-title %}  {% endblock %}
-                                    </span>
-                                </h1>
-
                                 {% block content %}  {% endblock %}
-
 							</div>
 						</div>
 					</article>

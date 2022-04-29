@@ -10,6 +10,11 @@ class Topic(models.Model):
         help_text='Название топика',
         max_length=20
     )
+    slug = models.SlugField(
+        'Слаг',
+        help_text='Слаг',
+        unique=True
+    )
     image = models.ImageField(
         'Картинка',
         upload_to='topic_pics/',
@@ -35,8 +40,13 @@ class SubTopic(models.Model):
         Topic,
         on_delete=models.CASCADE,
         related_name='subtopics',
-        verbose_name='Подтопики',
-        help_text='Подтопик'
+        verbose_name='Топик',
+        help_text='Топик'
+    )
+    slug = models.SlugField(
+        'Слаг',
+        help_text='Слаг',
+        unique=True
     )
 
     class Meta:

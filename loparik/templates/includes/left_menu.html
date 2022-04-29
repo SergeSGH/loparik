@@ -1,58 +1,40 @@
 {% load static %}
 <aside itemscope itemtype="http://schema.org/WPSideBar">
     <nav class="attractions-nav-side">
-        <section class="item-14" style="font-size: 18px; font-family: sans-serif;">
+
+        {% for topic_object in topic_objects %}
+
+        <section class="item-{{topic_object.item}}" style="font-size: 18px; font-family: sans-serif;">
             <h2>
-                <a href="https://krytota.ru/igrovyie-attrakczionyi" rel="nofollow">
+                <a href="{% url 'attraction:topic' topic_object.topic.slug %}" rel="nofollow">
                     <span class="logo">
-                        <img alt="Игровые аттракционы" src="{% static '/img/titles/igrovyie_0x40_340.png' %}">
+                        <img alt="{{ topic_object.topic.name }}" src="{{ topic_object.topic.image.url }}">
+ {% comment %}
+                        {% thumbnail message.image "960x339" crop="center" upscale=True as im %}
+                        <img class="card-img my-2" src="{{ im.url }}">
+                      {% endthumbnail %}
+   
+
+          
+
+ {% endcomment %}
                     </span>
-                    <span class="title">Как играть</span>
+                    <span class="title">{{ topic_object.topic.name }}</span>
                 </a>
             </h2>
             <ul>
+
+                {% for subtopic in topic_object.st_list %}
                 <li class="first">
-                    <a href="https://krytota.ru/4-v-ryad">Правила игры</a>
+                    <a href="{% url 'attraction:subtopic' topic_object.topic.slug subtopic.slug %}">{{ subtopic.name }}</a>
                 </li>
-                <li>
-                    <a href="https://krytota.ru/pipe-ball">Как бросать дротики</a>
-                </li>
-                <li>
-                    <a href="https://krytota.ru/speed-test">Нюансы</a>
-                </li>
-                <li>
-                    <a href="https://krytota.ru/avtobol">Главный приз</a>
-                </li>
+                {% endfor %}
+                
             </ul>
+
         </section>
-        <section class="item-15"style="font-size: 18px; font-family: sans-serif;">
-            <h2>
-                <a href="https://krytota.ru/nastolnyie-attrakczionyi" rel="nofollow">
-                    <span class="logo">
-                        <img alt="Аттракцион" src="{% static '/img/titles/nastolnyie_0x40_340.png'%}">
-                    </span>
-                    <span class="title">
-                        Как организовать
-                    </span>
-                </a>
-            </h2>
-            <ul>
-                <li class="first">
-                    <a href="https://krytota.ru/aeroxokkej-arenda" rel="nofollow">Размер аттракциона</a>
-                </li>
-                <li>
-                    <a href="https://krytota.ru/arenda-bilyardnyx-stolov" rel="nofollow">Матрица для шариков</a>
-                </li>
-                <li>
-                    <a href="https://krytota.ru/birpong" rel="nofollow">Шарики</a>
-                </li>
-                <li>
-                    <a href="https://krytota.ru/boi-robotov" rel="nofollow">Дротики</a>
-                </li>
-                <li>
-                    <a href="https://krytota.ru/dujbol" rel="nofollow">Призы</a>
-                </li>
-            </ul>
-        </section>
+
+        {% endfor %}
+
     </nav>
 </aside>

@@ -1,10 +1,32 @@
 {% extends 'base.html' %}
-
+{% load thumbnail %}
 
 {% block page_title %}  Аттракцион "Лопни шарик" {% endblock %}
 
 {% block content %} 
-
-
-
+  {% for message in messages %}
+      {% if message == messages.first %}
+        <h1 class="justifyleft">
+          <span style="color: #99cc00;">
+      {% endif %}
+         {{ message.title|linebreaksbr }}
+      {% if message == messages.first %}
+          </span>
+        </h1>
+      {% endif %}
+      <br>
+      {% if message != messages.first %}
+        <br>
+      {% endif %}
+      {% if message.message %}
+        {{ message.message|linebreaksbr }}
+      {% endif %}
+      <br>
+      {% if message.image %}
+        {% thumbnail message.image "960x640" crop="center" upscale=True as im %}
+          <img class="card-img my-2" src="{{ im.url }}">
+        {% endthumbnail %}
+        <br><br>
+      {% endif %}
+  {% endfor %} 
 {% endblock %}
