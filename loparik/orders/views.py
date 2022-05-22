@@ -1,16 +1,26 @@
+from __future__ import absolute_import
+from django.conf import settings
 from django.shortcuts import render
 from .forms import OrderForm
 from django.shortcuts import redirect
 from attraction.models import Topic
-from .models import Order
+from django.core.mail import send_mail
+from .tasks import order_created
 
 def order_create(request):
     form = OrderForm(request.POST or None)
     if request.method == 'POST' and form.is_valid():
-        #order = form.save(commit=True)
-        #order.save()
         form.save()
-        return redirect('/order_create_success')
+        dest_email = 'ssprihodko@gmail.com'
+        subject = 'Новая заявка на консультацию'
+        email_text = (
+            f"Имя: {form.cleaned_data['first_name']}\n"
+            + f"Фамилия: {form.cleaned_data['second_name']}\n"
+            + f"е-мейл: {form.cleaned_data['email']}\n"
+            + f"Комментарий: {form.cleaned_data['comment']}\n"
+        )
+        order_created.delay(dest_email, subject, email_text)
+        return redirect('/order_create_success/')
     template = 'orders/order_create.html'
     topic_objects=[]
     topics = Topic.objects.all()
@@ -29,7 +39,6 @@ def order_create(request):
         'form':form,
         'upper_menu_list':upper_menu_list,
         'topic_objects':topic_objects,
-        'topic':'topic',
         'st_list':'st_list'
     }
     #print(subtopics)
@@ -55,7 +64,6 @@ def order_create_success(request):
     context = {
         'upper_menu_list':upper_menu_list,
         'topic_objects':topic_objects,
-        'topic':'topic',
         'st_list':'st_list'
     }
     #print(subtopics)

@@ -17,6 +17,11 @@ class Order(models.Model):
         help_text='Фамилия заказчика',
         max_length=20
     )
+    phone = models.CharField(
+        'Телефон заказчика',
+        help_text='Телефон заказчика',
+        max_length=20
+    )
     comment = models.TextField(
         'Комментарий',
         help_text='Комментарий'

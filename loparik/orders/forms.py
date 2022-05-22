@@ -10,11 +10,13 @@ class OrderForm(forms.ModelForm):
             'first_name',
             'second_name',
             'email',
+            'phone',
             'comment'
         )
         help_texts = {
-            'first_name': 'Введите имя',
-            'second_name': 'Введите фамилию',
-            'email': 'Введите е-мэйл',
+            'first_name': 'Имя',
+            'second_name': 'Фамилия',
+            'email': 'Е-мэйл',
+            'phone': 'Номер телефона',
             'comment': 'Добавьте комментарий'
         }

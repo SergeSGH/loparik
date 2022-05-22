@@ -26,7 +26,6 @@ def index(request):
         'messages':messages,
         'upper_menu_list':upper_menu_list,
         'topic_objects':topic_objects,
-        'topic':'topic',
         'st_list':'st_list'
     }
     #print(subtopics)
@@ -59,7 +58,6 @@ def topic(request, topic_slug):
         'messages':messages,
         'upper_menu_list':upper_menu_list,
         'topic_objects':topic_objects,
-        'topic':'topic',
         'st_list':'st_list'
     }
     #print(subtopics)
@@ -97,7 +95,6 @@ def subtopic(request, topic_slug, subtopic_slug):
         'messages':messages,
         'upper_menu_list':upper_menu_list,
         'topic_objects':topic_objects,
-        'topic':'topic',
         'st_list':'st_list'
     }
     #print(subtopics)

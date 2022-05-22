@@ -8,6 +8,7 @@ class OrderAdmin(admin.ModelAdmin):
         'first_name',
         'second_name',
         'email',
+        'phone',
         'comment',
     )
 

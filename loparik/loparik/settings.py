@@ -30,8 +30,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-CELERY_BROKER_URL = "redis://127.0.0.1:6379/0"
-CELERY_RESULT_BACKEND = "redis://127.0.0.1:6379/0"
+#CELERY_BROKER_URL = "amqp:guest://localhost:15672/"
+#CELERY_RESULT_BACKEND = "amqp:guest://localhost:15672/"
 
 # Application definition
 
@@ -113,6 +113,20 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST_ADDRESS = 'loparik-msk@yandex.ru'
+
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'loparik-msk@yandex.ru'
+EMAIL_HOST_PASSWORD = 'accfpftxcnvdkqyg'
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
+
+SERVER_EMAIL = EMAIL_HOST_USER
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
@@ -144,3 +158,5 @@ STATICFILES_DIRS = (
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+CELERY_IMPORTS = ('orders.tasks',)
