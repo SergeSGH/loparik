@@ -9,7 +9,7 @@
 
 ### Технологии:
 ```
-Python, Django, SQLite, Celery, RabbitMQ
+Python, Django, HTML, CSS, JavaScript, SQLite, Celery, RabbitMQ
 ```
 
 ### Как добавлять информацию на сайт:
