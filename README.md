@@ -28,7 +28,9 @@ git clone https://github.com/SergeSGH/loparik.git
 ```
 Установить виртуальное коружение, сделать миграции создать суперпользователя:
 ```
+python -m venv venv
 . venv/Scripts/activate
+pip install -r requirements.txt
 python manage.py migrate
 python manage.py createsuperuser
 ```
