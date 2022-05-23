@@ -35,18 +35,12 @@ urlpatterns += [
     path('', include('attraction.urls', namespace='attraction')),
 ]
 
-
-
 def redirect_view(request): 
     return redirect('static/img/fav/favicon-16x16.png') 
 
 urlpatterns += [
     path('favicon.ico', redirect_view, name = 'favicon'),
 ]
-
-
-
-
 
 if settings.DEBUG:
     urlpatterns += static(
