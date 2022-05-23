@@ -41,7 +41,6 @@ def order_create(request):
         'topic_objects':topic_objects,
         'st_list':'st_list'
     }
-    #print(subtopics)
     return render(request, template, context)
 
 def order_create_success(request):
@@ -66,5 +65,4 @@ def order_create_success(request):
         'topic_objects':topic_objects,
         'st_list':'st_list'
     }
-    #print(subtopics)
     return render(request, template, context)
