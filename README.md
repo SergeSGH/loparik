@@ -9,7 +9,7 @@
 
 ### Технологии:
 ```
-Python, Django, SQLite, Celery, RebbitMQ
+Python, Django, HTML, CSS, JavaScript, SQLite, Celery, RabbitMQ
 ```
 
 ### Как добавлять информацию на сайт:
@@ -43,11 +43,8 @@ EMAIL_PORT = значение (для Yandex 465)
 EMAIL_HOST_USER = адрес почты отправителя
 EMAIL_HOST_PASSWORD = пароль
 ```
-Инициировать и запустить проект:
+Запустить проект:
 ```
-. venv/Scripts/activate
-python manage.py migrate
-python manage.py createsuperuser
 python manage.py runserver
 ```
 Дополнительно:
