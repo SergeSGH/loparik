@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Topic, SubTopic, MessageSubTopic, MessageTopic, MessageMain
+from .models import MessageMain, MessageSubTopic, MessageTopic, SubTopic, Topic
 
 
 class TopicAdmin(admin.ModelAdmin):
@@ -41,6 +41,7 @@ class MessageTopicAdmin(admin.ModelAdmin):
         'image'
     )
 
+
 class MessageSubTopicAdmin(admin.ModelAdmin):
     list_display = (
         'id',
@@ -49,6 +50,7 @@ class MessageSubTopicAdmin(admin.ModelAdmin):
         'message',
         'image'
     )
+
 
 admin.site.register(Topic, TopicAdmin)
 admin.site.register(SubTopic, SubTopicAdmin)

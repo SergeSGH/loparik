@@ -115,7 +115,6 @@ class MessageTopic(models.Model):
         return self.title[:15]
 
 
-
 class MessageSubTopic(models.Model):
     title = models.TextField(
         'Заголовок абзаца',

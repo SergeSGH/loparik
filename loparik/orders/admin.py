@@ -12,4 +12,5 @@ class OrderAdmin(admin.ModelAdmin):
         'comment',
     )
 
+
 admin.site.register(Order, OrderAdmin)

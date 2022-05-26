@@ -13,13 +13,11 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import include, path
-from django.conf.urls.static import static
 from django.conf import settings
+from django.conf.urls.static import static
+from django.contrib import admin
 from django.shortcuts import redirect
-
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.urls import include, path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -35,11 +33,13 @@ urlpatterns += [
     path('', include('attraction.urls', namespace='attraction')),
 ]
 
-def redirect_view(request): 
-    return redirect('static/img/fav/favicon-16x16.png') 
+
+def redirect_view(request):
+    return redirect('static/img/fav/favicon-16x16.png')
+
 
 urlpatterns += [
-    path('favicon.ico', redirect_view, name = 'favicon'),
+    path('favicon.ico', redirect_view, name='favicon'),
 ]
 
 if settings.DEBUG:

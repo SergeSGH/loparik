@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 import os
+
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -29,9 +30,6 @@ SECRET_KEY = str(os.getenv('SECRET_KEY'))
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
-#CELERY_BROKER_URL = "amqp:guest://localhost:15672/"
-#CELERY_RESULT_BACKEND = "amqp:guest://localhost:15672/"
 
 # Application definition
 

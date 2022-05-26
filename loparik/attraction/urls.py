@@ -7,5 +7,8 @@ app_name = 'attraction'
 urlpatterns = [
     path('', views.index, name='index'),
     path('<slug:topic_slug>/', views.topic, name='topic'),
-    path('<slug:topic_slug>/<slug:subtopic_slug>/', views.subtopic, name='subtopic')  
+    path(
+        '<slug:topic_slug>/<slug:subtopic_slug>/',
+        views.subtopic, name='subtopic'
+    )
 ]
