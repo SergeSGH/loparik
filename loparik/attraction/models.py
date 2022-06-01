@@ -1,25 +1,51 @@
 from django.contrib.auth import get_user_model
 from django.db import models
+from sorl.thumbnail import ImageField, get_thumbnail
+from PIL import Image
 
 User = get_user_model()
+
+
+def scale_dimensions(width, height, longest_side):
+    if width > height:
+        if width > longest_side:
+            ratio = longest_side*1./width
+            return (int(width*ratio), int(height*ratio))
+    elif height > longest_side:
+        ratio = longest_side*1./height
+        return (int(width*ratio), int(height*ratio))
+    return (width, height)
 
 
 class Topic(models.Model):
     name = models.CharField(
         'Название топика',
         help_text='Название топика',
-        max_length=20
+        max_length=50
     )
     slug = models.SlugField(
         'Слаг',
         help_text='Слаг',
         unique=True
     )
-    image = models.ImageField(
+    image = ImageField(
         'Картинка',
         upload_to='topic_pics/',
         blank=True
     )
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        if self.image:
+            image = Image.open(self.image.path)
+            (width, height) = image.size
+            (new_width, new_height) = scale_dimensions(width, height, longest_side=40)
+            if new_width < width or new_height < height:
+                image = image.resize((new_width, new_height))
+            image.save("%s.jpg" % self.image.path.split('.')[0], format='JPEG', quality=70, optimize=True)
+    
+    def __str__(self):
+        return self.title[:15]
 
     class Meta:
         ordering = ['id']
@@ -34,7 +60,7 @@ class SubTopic(models.Model):
     name = models.CharField(
         'Название подтопика',
         help_text='Название подтопика',
-        max_length=20
+        max_length=50
     )
     topic = models.ForeignKey(
         Topic,
@@ -114,7 +140,6 @@ class MessageTopic(models.Model):
     def __str__(self):
         return self.title[:15]
 
-
 class MessageSubTopic(models.Model):
     title = models.TextField(
         'Заголовок абзаца',
@@ -140,8 +165,8 @@ class MessageSubTopic(models.Model):
 
     class Meta:
         ordering = ['id']
-        verbose_name = 'Абзац'
-        verbose_name_plural = 'Абзацы'
+        verbose_name = 'Абзац подтопика'
+        verbose_name_plural = 'Абзацы подтопиков'
 
     def __str__(self):
         return self.title[:15]

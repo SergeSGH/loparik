@@ -9,18 +9,26 @@
         <h1 class="justifyleft">
           <span style="color: #99cc00;">
       {% endif %}
+      {% if message != messages.first %}
+        <div class="main-text">
+      {% endif %}
          {{ message.title|linebreaksbr }}
       {% if message == messages.first %}
           </span>
         </h1>
       {% endif %}
+      {% if message != messages.first %}
+        </div>
+      {% endif %}
       <br>
+      <div class="main-text">
       {% if message != messages.first %}
         <br>
       {% endif %}
       {% if message.message %}
         {{ message.message|linebreaksbr }}
       {% endif %}
+        </div>
       <br>
       {% if message.image %}
         {% thumbnail message.image "960x640" crop="center" upscale=True as im %}

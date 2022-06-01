@@ -2,9 +2,9 @@
 Файл настроек Celery
 https://docs.celeryproject.org/en/stable/django/first-steps-with-django.html
 """
-import os
 
 from __future__ import absolute_import
+import os
 from celery import Celery
 
 # этот код скопирован с manage.py

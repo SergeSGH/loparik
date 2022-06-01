@@ -26,6 +26,15 @@
 	<link href="{% static 'css/owl.carousel.min.css' %}" rel="stylesheet">
 	<link href="{% static 'css/owl.theme.green.min.css' %}" rel="stylesheet">
 	<link href="{% static "css/app.min.css" %}" rel="stylesheet">
+	<style>    
+		.main-text {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			width: 100%;
+			font-size: 20px;
+		}
+	</style>
 </head>
 
 <body itemscope="itemscope" itemtype="http://schema.org/WebPage">
@@ -33,17 +42,23 @@
 		{% include 'includes/header.html' %}
 	</header>
 	<main>
-		<div class="container">
+		<div>
 			<div class="row">
-				<div class="col-md-12">
+				<div class="col-md-1">
+				</div>
+				<div class="col-md-10">
 					{% include 'includes/upper_menu.html' %}
+				</div>
+				<div class="col-md-1">
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-4 hidden-xs">
+				<div class="col-md-1">
+				</div>
+				<div class="col-md-3 hidden-xs">
 					{% include 'includes/left_menu.html' %}
 				</div>
-				<div class="col-md-8 content" itemscope itemtype="http://schema.org/Product">
+				<div class="col-md-7 content" itemscope itemtype="http://schema.org/Product">
 					<article>
 						<div class="row">
 							<div class="col-md-12" id="content-text">
@@ -51,6 +66,8 @@
 							</div>
 						</div>
 					</article>
+				</div>
+				<div class="col-md-1">
 				</div>
 			</div>
 		</div>

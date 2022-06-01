@@ -18,12 +18,13 @@
                     <span class="title">{{ topic_object.topic.name }}</span>
                 </a>
             </h2>
+            
             <ul>
                 {% for subtopic in topic_object.st_list %}
                 <li class="first">
                     <a href="{% url 'attraction:subtopic' topic_object.topic.slug subtopic.slug %}">{{ subtopic.name }}</a>
                 </li>
-                {% endfor %}          
+                {% endfor %}
             </ul>
         </section>
         {% endfor %}
