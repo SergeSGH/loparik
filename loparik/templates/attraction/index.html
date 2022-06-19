@@ -10,25 +10,24 @@
           <span style="color: #99cc00;">
       {% endif %}
       {% if message != messages.first %}
-        <div class="main-text">
+            <div class="main-text">
       {% endif %}
          {{ message.title|linebreaksbr }}
+      {% if message != messages.first %}
+            </div>
+      {% endif %}
       {% if message == messages.first %}
           </span>
         </h1>
       {% endif %}
-      {% if message != messages.first %}
-        </div>
-      {% endif %}
-      <br>
+
       <div class="main-text">
-      {% if message != messages.first %}
-        <br>
-      {% endif %}
+
       {% if message.message %}
+        <br>
         {{ message.message|linebreaksbr }}
       {% endif %}
-        </div>
+      </div>
       <br>
       {% if message.image %}
         {% thumbnail message.image "960x640" crop="center" upscale=True as im %}
@@ -36,5 +35,145 @@
         {% endthumbnail %}
         <br><br>
       {% endif %}
-  {% endfor %} 
+  {% endfor %}
+  {% if for_calculation %}
+  {% load user_filters %}
+  <div class="container">
+    <form method="post">
+    {% csrf_token %}
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="row">
+              <div class="col-md-3 col-sm-3 col-xs-3">
+                <div class="row">
+                  {{ form.months|addclass:'form-control' }}
+                </div>
+                <div class="row">
+                  число месяцев
+                </div>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-md-3 col-sm-3 col-xs-3">
+                <div class="row">
+                  {{ form.holidays|addclass:'form-control' }}
+                </div>
+                <div class="row">
+                  число праздников и выходных
+                </div>
+              </div>
+              <div class="col-md-1 col-sm-1 col-xs-1">
+              </div>
+              <div class="col-md-3 col-sm-3 col-xs-3">
+                <div class="row">
+                  {{ form.warm_days|addclass:'form-control' }}
+                </div>
+                <div class="row">
+                  число теплых дней
+                </div>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-md-3 col-sm-3 col-xs-3">
+                <div class="row">
+                  {{ form.leasing1st|addclass:'form-control' }}
+                </div>
+                <div class="row">
+                  аванс аренды, руб.
+                </div>
+              </div>
+              <div class="col-md-1 col-sm-1 col-xs-1">
+              </div>
+              <div class="col-md-3 col-sm-3 col-xs-3">
+                <div class="row">
+                  {{ form.leasing|addclass:'form-control' }}
+                </div>
+              <div class="row">
+                аренда в месяц, руб.
+              </div>
+            </div>
+          <div class="col-md-1 col-sm-1 col-xs-1">
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-3">
+          <div class="row">
+            {{ form.population|addclass:'form-control' }}
+          </div>
+          <div class="row">
+            численность населения
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <button type="submit" class="btn btn-primary">
+          Рассчитать
+        </button>
+      </div>
+    </form>
+
+    {% if is_calculated %}
+    <div class="row">
+      <br>
+      {% for row in calc_res %}
+        <div class="row">
+          {% if row.bold %}
+            <strong>
+          {% endif %}
+          <div class="col-md-3 col-sm-3 col-xs-3">
+          {% if row.indent %}
+            <div class="row">
+              <div class="col-md-1 col-sm-1 col-xs-1">
+              </div>
+              {% endif %}
+              <div class="col-md-10 col-sm-10 col-xs-10">
+                {{ row.first }}      
+              </div>
+              {% if row.indent %}
+                </div>
+              {% endif %}
+            </div>
+          <div class="col-md-9 col-sm-9 col-xs-9">
+            <div class="col-md-3 col-sm-3 col-xs-3" align="center">
+              {{ row.second }}         
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-3" align="center">
+              {{ row.third }}         
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-3" align="center">
+              {{ row.fourth }}         
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-3" align="center">
+              {{ row.fifth }}         
+            </div>
+          </div>
+          {% if row.bold %}
+            </strong>
+          {% endif %}
+        </div>
+        {% if row.br %}
+          </br>
+        {% endif %}
+      {% endfor %}
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-2 col-sm-2 col-xs-2">
+        <form action=" {% url 'attraction:download' topic_slug subtopic_slug %}" method="GET">
+        {% csrf_token %}
+          <button type="submit" class="btn btn-primary">Загрузить pdf</button>
+        </form>
+      </div>
+      <div class="col-md-3 col-sm-3 col-xs-3">
+        <form action=" {% url 'attraction:subtopic' topic_slug subtopic_slug %}" method="GET">
+        {% csrf_token %}
+          <button type="submit" class="btn btn-success">Очистить</button>
+        </form>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+  {% endif %}
 {% endblock %}

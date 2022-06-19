@@ -30,8 +30,7 @@ def order_create(request):
     context = {
         'form': form,
         'upper_menu_list': upper_menu_list,
-        'topic_objects': topic_objects,
-        'st_list': 'st_list'
+        'topic_objects': topic_objects
     }
     return render(request, template, context)
 
@@ -45,7 +44,6 @@ def order_create_success(request):
     }]
     context = {
         'upper_menu_list': upper_menu_list,
-        'topic_objects': topic_objects,
-        'st_list': 'st_list'
+        'topic_objects': topic_objects
     }
     return render(request, template, context)

@@ -5,7 +5,7 @@
         {% for topic_object in topic_objects %}
         <section class="item-{{topic_object.item}}" style="font-size: 18px; font-family: sans-serif;">
             <h2>
-                <a href="{% url 'attraction:topic' topic_object.topic.slug %}" rel="nofollow">
+                <a href="{% url 'attraction:subtopic' topic_object.topic.slug topic_object.st_list.first.slug %}" rel="nofollow">
                     <span class="logo">
                         <img alt="{{ topic_object.topic.name }}" src="{{ topic_object.topic.image.url }}">
                         {% comment %}

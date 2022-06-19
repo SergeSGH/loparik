@@ -10,5 +10,9 @@ urlpatterns = [
     path(
         '<slug:topic_slug>/<slug:subtopic_slug>/',
         views.subtopic, name='subtopic'
+    ),
+    path(
+        '<slug:topic_slug>/<slug:subtopic_slug>/download',
+        views.download, name='download'
     )
 ]
