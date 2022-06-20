@@ -89,7 +89,14 @@ class ParametersAdmin(admin.ModelAdmin):
         'medium_prize_price',
         'big_prize_price',
         'operator_fix',
-        'operator_share'
+        'operator_share',
+        'bass',
+        'rybka',
+        'num_rybok',
+        'ved',
+        'num_ved',
+        'pump',
+        'tehn'
     )
 
 

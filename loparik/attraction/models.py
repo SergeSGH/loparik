@@ -50,6 +50,14 @@ class Parameters(models.Model):
     operator_fix = models.IntegerField('Фикс. ставка оператора в день', help_text='руб.')
     operator_share = models.DecimalField('Доля от выручки оператора', decimal_places=2,
                                          max_digits=3, help_text='доля')
+    # дополнительные поля для рыбалочки
+    bass = models.IntegerField('Стоимость бассейна', help_text='руб.')
+    rybka = models.IntegerField('Цена муляжа рыбки', help_text='руб.')
+    num_rybok = models.IntegerField('Число муляжей рыбки', help_text='шт.')
+    ved = models.IntegerField('Цена ведерка', help_text='руб.')
+    num_ved = models.IntegerField('Число ведерок', help_text='шт.')
+    pump = models.IntegerField('Стоимость насоса', help_text='руб.')
+    tehn = models.IntegerField('Тех. обслуживание в мес.', help_text='руб.')
 
     class Meta:
         ordering = ['id']
