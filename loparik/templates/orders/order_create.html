@@ -3,45 +3,36 @@
 {% block page_title %}Оставить заявку{% endblock %}
 {% block content %}
   <div class="row justify-content-center">
+    <div class="co12-md-12 col-sm-12 col-xs-12">
+    <h3 class="justifyleft">
+      <span style="color: #99cc00;">
+        Заполните форму, и мы свяжемся по указанным контактам
+      </span>
+    </h3>
+    </div>  
     <div class="col-md-10 p-5">
       <div class="card">
         <div class="card-body">
           {% load user_filters %} {# Загружаем фильтры #}
-          {# Этот блок будет показан, если в форме есть ошибки #}
-          {% if form.errors %}
-            {% for field in form %}
-              {% for error in field.errors %}            
-                <div class="alert alert-danger">
-                  {{ error|escape }}
-                </div>
-              {% endfor %}
-            {% endfor %}
-            {% for error in form.non_field_errors %}
-              <div class="alert alert-danger">
-                {{ error|escape }}
-              </div>
-            {% endfor %}
-          {% endif %}
+          <div class="container">
             <form method="post">
+              <div class="row">
               {% csrf_token %}
               {% for field in form %}
-              <div class="form-group row my-3 p-3">
-                {{ field|addclass:'form-control' }}
-                {% if field.help_text %}   
-                  <small id="{{ field.id_for_label }}-help" class="form-text text-muted">
-                    {{ field.help_text|safe }}
-                  </small>
-                {% endif %}
+                <div class="col-md-5 col-sm-7 col-xs-9">
+                  {{ field|addclass:'form-control' }}
+                  {{ field.help_text|safe }}
+                </div>
+              {% endfor%}
               </div>
-              {% endfor %}
-              <div class="row">
-                <button type="submit" class="btn btn-primary">
-                  Отправить
-                </button>
-              </div>
+              <br>
+              <button type="submit" class="btn btn-primary">
+                Отправить
+              </button>
             </form>
           </div>
         </div>
       </div>
+    </div>
   </div>
 {% endblock %} 

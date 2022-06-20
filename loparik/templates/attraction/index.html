@@ -50,7 +50,7 @@
                   {{ form.months|addclass:'form-control' }}
                 </div>
                 <div class="row">
-                  число месяцев
+                  {{ form.months.help_text }}
                 </div>
               </div>
             </div>
@@ -61,7 +61,7 @@
                   {{ form.holidays|addclass:'form-control' }}
                 </div>
                 <div class="row">
-                  число праздников и выходных
+                  {{ form.holidays.help_text }}
                 </div>
               </div>
               <div class="col-md-1 col-sm-1 col-xs-1">
@@ -71,7 +71,7 @@
                   {{ form.warm_days|addclass:'form-control' }}
                 </div>
                 <div class="row">
-                  число теплых дней
+                  {{ form.warm_days.help_text }}
                 </div>
               </div>
             </div>
@@ -82,7 +82,7 @@
                   {{ form.leasing1st|addclass:'form-control' }}
                 </div>
                 <div class="row">
-                  аванс аренды, руб.
+                  {{ form.leasing1st.help_text }}
                 </div>
               </div>
               <div class="col-md-1 col-sm-1 col-xs-1">
@@ -92,17 +92,17 @@
                   {{ form.leasing|addclass:'form-control' }}
                 </div>
               <div class="row">
-                аренда в месяц, руб.
+                {{ form.leasing.help_text }}
               </div>
             </div>
           <div class="col-md-1 col-sm-1 col-xs-1">
         </div>
         <div class="col-md-3 col-sm-3 col-xs-3">
           <div class="row">
-            {{ form.population|addclass:'form-control' }}
+            {{ form.pop_bass|addclass:'form-control' }}
           </div>
           <div class="row">
-            численность населения
+            {{ form.pop_bass.help_text }}
           </div>
         </div>
       </div>
